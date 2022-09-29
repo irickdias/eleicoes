@@ -12,5 +12,6 @@ public interface CandidatoDAO extends JpaRepository<Candidato, Long> {
 
     @Query(value="SELECT * FROM candidato c WHERE c.ca_nome LIKE %:filtro%", nativeQuery=true)
     List <Candidato> findWithFilter(@Param("filtro")String filtro);
+
     
 }
