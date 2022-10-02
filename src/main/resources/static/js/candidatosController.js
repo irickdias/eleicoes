@@ -25,7 +25,8 @@ const tabelacan = {
                 vformCan.id = candidato.id;
                 vformCan.num = candidato.num;
                 vformCan.nome = candidato.nome;
-                vformCan.partido = candidato.partido.nome;
+                vformCan.partidoCod = candidato.partido.id;
+                console.log(candidato.partido.id);
             })
             .catch(err => {this.candidatos = err} )
         }
@@ -72,12 +73,21 @@ const formcan = {
         axios.get(`http://localhost:8080/apis/partido/buscar-todos?filtro=`)
         .then(response => {this.partidos = response.data})
         .catch(err => {this.partidos = err} )
+        //console.log(this.id);
+        //console.log(this.nome);
+        //console.log(this.num);
+        //console.log(this.partidoCod);
+        //document.getElementById("cbPartido").value = this.partidoCod;
     },
     methods: {
         gravarCandidato()
         {
             let apiurl = 'http://localhost:8080/apis/candidato/incluir';
-            const dados = {id: this.id, nome: this.nome, num: this.num, partido: this.partido};
+            var e = document.getElementById("cbPartidos");
+            let partidoNome = e.options[e.selectedIndex].text;
+            //console.log(partidoNome);
+            const dados = {id: this.id, nome: this.nome, num: this.num, partido:{id: this.partidoCod, nome: partidoNome} };
+            //console.log(dados);
             if(this.id != 0)
                 apiurl = 'http://localhost:8080/apis/candidato/alterar';
             
@@ -102,7 +112,7 @@ const formcan = {
             this.id=0;
             this.nome="";
             this.num="";
-            this.partido="";
+            this.partidoCod="";
         }
     },
     template:
@@ -127,18 +137,22 @@ const formcan = {
                         <label for="id">ID:</label>
                         <input type="text" class="form-control" id="id" v-model="id" readonly>
                       </div>
+
                       <div class="mb-3">
                         <label for="nome">Nome do candidato:</label>
                         <input type="text" class="form-control" id="nome" v-model="nome">
                       </div>
+
                       <div class="mb-3">
                         <label for="num">Número do candidato:</label>
                         <input type="text" class="form-control" id="num" v-model="num">
                       </div>
+
                       <div class="mb-3">
-                        <label for="partido">Partido:</label>
-                        <select id="partido">
-                            <option v-for="p in this.partidos" value="p.id">{{p.nome}}</option>
+                        <label for="cbPartidos">Partido:</label>
+                        <select id="cbPartidos" v-model="partidoCod" >
+                            <option disabled selected value="">-- Selecione o partido --</option>
+                            <option v-for="p in this.partidos" :value="p.id">{{p.nome}}</option>
                         </select>
                       </div>
                       
