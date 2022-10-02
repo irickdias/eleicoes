@@ -40,7 +40,7 @@ public class EleicaoServiceController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @PutMapping("/alterar")
+    @PostMapping("/alterar")
     public ResponseEntity<Object> alterar(@RequestBody Eleicao eleicao)
     {
         eleicaoDAO.save(eleicao);

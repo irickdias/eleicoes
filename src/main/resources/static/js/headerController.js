@@ -43,7 +43,7 @@ const header = {
 
                         <li><a href="">Candidatos</a></li>
 
-                        <li><a href="">Cargos</a></li>
+                        <li><a href="./cargos.html">Cargos</a></li>
                         
                         <li><a href="">Eleições</a></li>
                     </ul>

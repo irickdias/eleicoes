@@ -27,6 +27,7 @@ const vform = {
 
             
         },
+        
         apagarForm(){
             this.id=0;
             this.nome="";

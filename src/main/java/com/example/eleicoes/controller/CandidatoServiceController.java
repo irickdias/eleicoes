@@ -41,7 +41,7 @@ public class CandidatoServiceController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @PutMapping("/alterar")
+    @PostMapping("/alterar")
     public ResponseEntity<Object> alterar(@RequestBody Candidato candidato)
     {
         candidatoDAO.save(candidato);

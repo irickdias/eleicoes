@@ -3,6 +3,7 @@ package com.example.eleicoes.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.eleicoes.model.Cargo;
 import com.example.eleicoes.repository.CargoDAO;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping(value="/apis/cargo")
 public class CargoServiceController {
@@ -40,14 +41,14 @@ public class CargoServiceController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @PutMapping("/alterar")
+    @PostMapping("/alterar")
     public ResponseEntity<Object> alterar(@RequestBody Cargo cargo)
     {
         cargoDAO.save(cargo);
         return new ResponseEntity<>(cargo, HttpStatus.OK);
     }
 
-    @GetMapping("/buscarUm/{id}")
+    @GetMapping("/buscar-um/{id}")
     public ResponseEntity<Object> buscarUm(@PathVariable(value="id") Long id)
     {
 
