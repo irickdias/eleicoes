@@ -1,10 +1,10 @@
 const indexApp = {
     data(){
-        return {eleicao: "", candidatos:"", tipo: "", caEleicao: ""}
+        return {eleicoes: "", candidato:"", candidatos:"", tipoID: "", caEleicao: [], eleicao: ""}
     },
     mounted() {
         axios.get(`http://localhost:8080/apis/eleicao/buscar-todos?filtro=`)
-        .then(response => {this.eleicao = response.data});
+        .then(response => {this.eleicoes = response.data});
 
         axios.get(`http://localhost:8080/apis/candidato/buscar-todos?filtro=`)
         .then(response => {this.candidatos = response.data});
@@ -17,12 +17,72 @@ const indexApp = {
             .then(response => {this.candidatos = response.data})
         },
 
-        addCandidatoEleicao(id){
-            if(this.caEleicao == "")
-                this.caEleicao = [];
+        async addCandidatoEleicao(id){
+            var achou = false;
+            var pos = 0;
+
+            await axios.get(`http://localhost:8080/apis/candidato/buscar-um/${id}`)
+            .then(response => {this.candidato = response.data});
+
+            console.log(this.candidato);
+            if(this.caEleicao.length == 0)
+            {
+                //console.log("entrou 1");
+                this.caEleicao.push(this.candidato);
+            }  
             else
             {
+                //console.log("entrou 2");
+                
+                // procura id de candidato na lista
+                for(let i=0; i<this.caEleicao.length; i++)
+                {
+                    if(this.caEleicao[i].id == id)
+                    {
+                        achou = true;
+                        pos = i;
+                    }
+                        
+                }
 
+                if(achou) // se tiver achado, irá retirar
+                {
+                    this.caEleicao.splice(pos, 1);
+                    //this.caEleicao = aux;
+                }
+                else // senão, adiciona
+                {
+                    this.caEleicao.push(this.candidato);
+                }
+                
+            }
+        },
+        async confirmarSelecionados(){
+            let apiurl = 'http://localhost:8080/apis/votos/incluir';
+            var dados;
+
+            
+            await axios.get(`http://localhost:8080/apis/eleicao/buscar-um/${this.tipoID}`)
+            .then(response => {this.eleicao = response.data});
+
+            for(let i=0; i<this.caEleicao.length; i++)
+            {
+                
+                dados = {id: 0, total: 0, candidato: this.caEleicao[i], eleicao: this.eleicao};
+                
+                
+                axios({
+                    method: 'post',
+                    url: apiurl,
+                    timeout: 8000, // 8 segundos timeout
+                    data: dados
+                })
+                .then(response => {
+                    alert("inseridos com sucesso!");
+
+                })
+                .catch(error => console.error('timeout excedido'))
+                    
             }
         }
     },
@@ -33,8 +93,9 @@ const indexApp = {
     <br/>
     
     <h2>Selecione a categoria de eleição</h2>
-    <select class="form-select mt-3" id="cbEleicao">
-        <option v-for="e in this.eleicao" value="e.id">{{e.tipo}}</option>
+    <select class="form-select mt-3" id="cbEleicao" v-model="tipoID">
+        <option value="" disabled selected>-- Selecione um --</option>
+        <option v-for="e in this.eleicoes" :value="e.id">{{e.tipo}}</option>
     </select>
 
     <br/><br/>
@@ -59,6 +120,10 @@ const indexApp = {
         
         </tbody>
     </table>
+
+    <p>Candidatos Selecionado: {{caEleicao}}</p>
+
+    <button type="button" @click="confirmarSelecionados()" class="btn btn-primary">Confirmar</button>
 
     `
 }

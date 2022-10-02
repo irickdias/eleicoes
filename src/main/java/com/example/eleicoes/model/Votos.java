@@ -28,6 +28,7 @@ public class Votos implements Serializable{
     @JoinColumn(name = "ca_id", referencedColumnName = "ca_id")
     Candidato candidato;
 
+    
     @ManyToOne
     @JoinColumn(name = "ele_id", referencedColumnName = "ele_id")
     Eleicao eleicao;
@@ -59,6 +60,10 @@ public class Votos implements Serializable{
 
     public void setEleicao(Eleicao eleicao) {
         this.eleicao = eleicao;
+    }
+
+    public void setCandidato(Candidato candidato) {
+        this.candidato = candidato;
     }
 
 
