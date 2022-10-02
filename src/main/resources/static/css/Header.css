@@ -138,7 +138,7 @@
     color: white;
     font-weight: bold;
 }
-#Menu a:hover {color: #0CAFFF;}
+#Menu a:hover {color: #00308F;} /*#0CAFFF*/
 /*#Menu ul ul{visibility: hidden; position: absolute;} /*ul filho em display block
 #Menu ul li:hover {background-color: #BB1212;}
 #Menu ul li:hover ul{visibility: visible; z-index: 20;}

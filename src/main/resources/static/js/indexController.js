@@ -24,7 +24,7 @@ const indexApp = {
             await axios.get(`http://localhost:8080/apis/candidato/buscar-um/${id}`)
             .then(response => {this.candidato = response.data});
 
-            console.log(this.candidato);
+            //console.log(this.candidato);
             if(this.caEleicao.length == 0)
             {
                 //console.log("entrou 1");
@@ -56,34 +56,44 @@ const indexApp = {
                 }
                 
             }
+
+            
         },
         async confirmarSelecionados(){
             let apiurl = 'http://localhost:8080/apis/votos/incluir';
             var dados;
 
-            
-            await axios.get(`http://localhost:8080/apis/eleicao/buscar-um/${this.tipoID}`)
-            .then(response => {this.eleicao = response.data});
-
-            for(let i=0; i<this.caEleicao.length; i++)
+            if(this.caEleicao.length != 0)
             {
-                
-                dados = {id: 0, total: 0, candidato: this.caEleicao[i], eleicao: this.eleicao};
-                
-                
-                axios({
-                    method: 'post',
-                    url: apiurl,
-                    timeout: 8000, // 8 segundos timeout
-                    data: dados
-                })
-                .then(response => {
-                    alert("inseridos com sucesso!");
+                await axios.get(`http://localhost:8080/apis/eleicao/buscar-um/${this.tipoID}`)
+                .then(response => {this.eleicao = response.data});
 
-                })
-                .catch(error => console.error('timeout excedido'))
+                for(let i=0; i<this.caEleicao.length; i++)
+                {
                     
+                    dados = {id: 0, total: 0, candidato: this.caEleicao[i], eleicao: this.eleicao};
+                    
+                    
+                    await axios({
+                        method: 'post',
+                        url: apiurl,
+                        timeout: 8000, // 8 segundos timeout
+                        data: dados
+                    })
+                    .then(response => {})
+                    .catch(error => console.error('timeout excedido'))
+                        
+                }
+
+                alert("Inseridos Com sucesso!");
             }
+            else
+            {
+                alert("Selecione 1 ou mais candidatos!");
+            }
+            
+
+            
         }
     },
 
@@ -111,8 +121,8 @@ const indexApp = {
                 <td>{{c.nome}}</td>
                 <td>{{c.num}}</td>
                 <td>{{c.partido.nome}}</td>
-                <td @click="addCandidatoEleicao(c.id)">
-                    <svg class="tableIconAdd" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                <td>
+                    <svg @click="addCandidatoEleicao(c.id)" class="tableIconAdd" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
                         <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
                     </svg>
                 </td>
