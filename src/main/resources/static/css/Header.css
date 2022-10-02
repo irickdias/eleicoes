@@ -1,0 +1,148 @@
+
+#headerMainContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 140px;
+    background-color: white;
+}
+
+#headerContainer {
+    display: flex; 
+    align-items: center;
+    /*position: fixed; -- o header tava ficando em cima de qualquer outro componente, tendo que controlar a posição manualmente*/
+    width: 95%;
+    background-color: white;
+    height: 120px;
+}
+
+.logoContainer{
+    width: 100px;
+    height: auto;
+}
+.topLogo{width: 100%; height: 100%;}
+
+.loginContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    width: 120px;
+    margin: 15px;
+    background-color: white;
+}
+.login-userimg {
+    width: 30px;
+    height: auto;
+}
+.login-userimg img{width: 100%; height: 100%;}
+.login-link{color: white;}
+
+.box-logo {
+    display: flex;
+    height: 60px;
+    min-width: 70px;
+    max-width: 70px;
+    padding: 0 5px;
+}
+
+.box-titulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+
+.titulo {
+    color: #0CAFFF;
+    font-size: 25px;
+    margin: 0;
+}
+
+.sub-titulo a {
+    text-decoration: none;
+    color: rgb(207, 207, 207);
+    font-size: 14px;
+}
+
+.botao-seguir {
+    font-size: 0.8em;
+    margin-top: 2px;
+    padding: 2px 6px;
+    border-style: none;
+    border-radius: 10px;
+    background-color: #5fd073;    
+}
+
+.botao-seguir:hover {
+    transition: 400ms;
+    background-color: #3d974e;
+    color: white;
+}
+
+.botao-voltar {
+    display: flex;  
+    flex-shrink: 0;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    background-color: #5fd073;
+    padding: 10px 16px;
+    margin: 1px 10px 1px 0px;
+    border-radius: 10px;
+}
+
+.botao-voltar:hover {
+    transition: 400ms;
+    background-color: #3d974e; 
+    color: white;
+}
+
+.bt-login{
+    font-size: 18px;
+    color: red;
+    text-decoration: none;
+}
+.bt-login:visited{color: red;}
+.bt-login:hover{transition: 400ms; color: #DE3B00;}
+
+.botao-login {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    background-color: #444857;
+    padding: 10px 16px;
+    margin: 1px 10px 1px 0px;
+    border-radius: 10px;
+}
+
+.botao-login:hover {
+    transition: 400ms;
+    background-color: #63656b;
+}
+
+/*linear-gradient(90deg, #008552 0%, #FFD700 100%)*/
+#Menu {text-align: center; background: linear-gradient(90deg, #008552 0%, #FFD700 100%); width: 100%;}
+#Menu ul {list-style: none; position: relative;} /*ul pai em display flex*/
+#Menu ul li {width: 100px; float: left;}
+#Menu a {
+    padding: 5px;
+    text-decoration: none;
+    display: block;
+    color: white;
+    font-weight: bold;
+}
+#Menu a:hover {color: #0CAFFF;}
+/*#Menu ul ul{visibility: hidden; position: absolute;} /*ul filho em display block
+#Menu ul li:hover {background-color: #BB1212;}
+#Menu ul li:hover ul{visibility: visible; z-index: 20;}
+#Menu ul ul li {float: none; border-top: solid 1px #ccc; width: auto;}
+#Menu ul ul li a {background-color: #BB1212; color: #fff;}*/
+/*.homepageBox{width: 100%; height: auto;}
+.home-img{width: 30px;}*/

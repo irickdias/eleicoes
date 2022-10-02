@@ -1,0 +1,29 @@
+* {padding: 0; margin: 0; font-family: arial;}
+
+
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #B0E0E6;
+ }
+
+
+.tableIconUpdate, .tableIconAdd{
+    font-size: 15px;
+    color: blue;
+    font-weight: bold;
+    cursor: pointer;
+}
+.tableIconUpdate:hover, .tableIconAdd:hover {
+    color: #0CAFFF;
+}
+
+.tableIconDelete{
+    font-size: 15px;
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+}
+.tableIconDelete:hover {
+    color: #FF6347;
+}
