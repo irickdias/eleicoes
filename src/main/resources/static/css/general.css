@@ -1,7 +1,9 @@
 * {padding: 0; margin: 0; font-family: arial;}
 
 
-
+table.table-bordered{
+    border: 2px solid black;
+}
 .table-striped>tbody>tr:nth-child(odd)>td, 
 .table-striped>tbody>tr:nth-child(odd)>th {
    background-color: #B0E0E6;
@@ -26,4 +28,12 @@
 }
 .tableIconDelete:hover {
     color: #FF6347;
+}
+
+h1 {
+    color: #008552;
+}
+
+h2 {
+    color: #0CAFFF;
 }

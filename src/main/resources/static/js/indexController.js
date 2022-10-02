@@ -29,13 +29,17 @@ const indexApp = {
 
     template:
     `
-    <select  id="cbEleicao">
-        <option v-for="e in this.eleicao" value='e.id'>{{e.tipo}}</option>
+    <h1 class="text-center">Adicionar candidatos a eleição</h1>
+    <br/>
+    
+    <h2>Selecione a categoria de eleição</h2>
+    <select class="form-select mt-3" id="cbEleicao">
+        <option v-for="e in this.eleicao" value="e.id">{{e.tipo}}</option>
     </select>
 
     <br/><br/>
-
-    <table class="table table-striped">
+    <h2>Selecione os candidatos</h2>
+    <table class="table table-striped table-bordered table-hover mt-3">
         <thead>
         <tr>
             <th>Nome</th> <th>Numero do Candidato</th> <th>Partido</th>  <th>Selecionar</th>

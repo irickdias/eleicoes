@@ -34,7 +34,7 @@ const tabelacan = {
     template:
     `
     <input type="text" @keyup="carregarTabela()" class="form-control" placeholder="Informe o filtro" v-model="filtro">
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered table-hover mt-5">
         <thead>
             <tr>
                 <th>ID</th> <th>Nome do candidato</th> <th>Número</th> <th>Partido</th> <th>Alterar</th> <th>Deletar</th>
@@ -150,7 +150,7 @@ const formcan = {
 
                       <div class="mb-3">
                         <label for="cbPartidos">Partido:</label>
-                        <select id="cbPartidos" v-model="partidoCod" >
+                        <select class="form-select" id="cbPartidos" v-model="partidoCod" >
                             <option disabled selected value="">-- Selecione o partido --</option>
                             <option v-for="p in this.partidos" :value="p.id">{{p.nome}}</option>
                         </select>

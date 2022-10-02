@@ -31,7 +31,7 @@ const tabelac = {
     template:
     `
     <input type="text" @keyup="carregarTabela()" class="form-control" placeholder="Informe o filtro" v-model="filtro">
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered table-hover mt-5">
         <thead>
             <tr>
                 <th>ID</th> <th>Nome do cargo</th> <th>Alterar</th> <th>Deletar</th>
