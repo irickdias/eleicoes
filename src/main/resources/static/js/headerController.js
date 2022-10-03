@@ -47,7 +47,7 @@ const header = {
                         
                         <li><a href="./eleicoes.html">Eleições</a></li>
 
-                        <li><a href="./estatisticas.html">Estatísticas</a></li>
+                        <li><a href="./estatistica.html">Estatísticas</a></li>
                     </ul>
                 </nav>
             </header>
