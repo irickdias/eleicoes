@@ -68,28 +68,51 @@ const indexApp = {
                 await axios.get(`http://localhost:8080/apis/eleicao/buscar-um/${this.tipoID}`)
                 .then(response => {this.eleicao = response.data});
 
-                for(let i=0; i<this.caEleicao.length; i++)
-                {
-                    
-                    dados = {id: 0, total: 0, candidato: this.caEleicao[i], eleicao: this.eleicao};
-                    
-                    
-                    await axios({
-                        method: 'post',
-                        url: apiurl,
-                        timeout: 8000, // 8 segundos timeout
-                        data: dados
-                    })
-                    .then(response => {})
-                    .catch(error => console.error('timeout excedido'))
-                        
-                }
 
-                alert("Inseridos Com sucesso!");
+                swal({
+                    title: "Corfimar estes candidatos?",
+                    icon: "warning",
+                    buttons: ["Cancelar", "Sim"]
+                  })
+                  .then(async (sim) => {
+                    if (sim) {
+                        for(let i=0; i<this.caEleicao.length; i++)
+                        {
+                            
+                            dados = {id: 0, total: 0, candidato: this.caEleicao[i], eleicao: this.eleicao};
+                            
+                            
+                            await axios({
+                                method: 'post',
+                                url: apiurl,
+                                timeout: 8000, // 8 segundos timeout
+                                data: dados
+                            })
+                            .then(response => {})
+                            .catch(error => console.error('timeout excedido'))
+                                
+                        }
+
+                        swal({
+                            title: "Sucesso!",
+                            text: "Os candidatos foram adicionados!",
+                            icon: "success",
+                            timer: 1200,
+                            buttons: false
+                          });
+
+                    }
+                  });
+                
+                
             }
             else
             {
-                alert("Selecione 1 ou mais candidatos!");
+                swal({
+                    title: "Erro!",
+                    text: "Nenhum candidato selecionado!",
+                    icon: "error",
+                  });
             }
             
 
