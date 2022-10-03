@@ -37,3 +37,14 @@ h1 {
 h2 {
     color: #0CAFFF;
 }
+
+.candSeleST{
+    color: #0CAFFF;
+    font-size: 22px;
+}
+
+.candSele{
+    font-style: italic;
+    font-size: 18px;
+    font-weight: bold;
+}

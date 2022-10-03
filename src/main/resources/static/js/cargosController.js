@@ -14,8 +14,22 @@ const tabelac = {
         },
         apagar(id) { 
             
-            if(confirm("Deseja excluir o cargo?"))
-                alert("apagando " + id); 
+            swal({
+                title: "Deletar este cargo?",
+                text: "Isto terá efeito permanente!",
+                icon: "warning",
+                buttons: ["Cancelar", "Deletar"],
+                dangerMode: true,
+              })
+              .then(async (deletar) => {
+                if (deletar) {
+                    await axios.delete(`http://localhost:8080/apis/cargo/excluir/${id}`)
+                    
+                    swal("Deletado com sucesso!", {icon: "success",});
+
+                    this.carregarTabela();
+                }
+              });
         },
         alterar(id) {
             myModal.toggle();

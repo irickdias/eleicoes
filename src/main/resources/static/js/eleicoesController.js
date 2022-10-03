@@ -14,8 +14,22 @@ const tabelae = {
         },
         apagar(id) { 
             
-            if(confirm("Deseja excluir a eleicao?"))
-                alert("apagando " + id); 
+            swal({
+                title: "Deletar esta eleição?",
+                text: "Isto terá efeito permanente!",
+                icon: "warning",
+                buttons: ["Cancelar", "Deletar"],
+                dangerMode: true,
+              })
+              .then(async (deletar) => {
+                if (deletar) {
+                    await axios.delete(`http://localhost:8080/apis/eleicao/excluir/${id}`)
+                    
+                    swal("Deletado com sucesso!", {icon: "success",});
+
+                    this.carregarTabela();
+                }
+              });
         },
         alterar(id) {
             myModal.toggle();

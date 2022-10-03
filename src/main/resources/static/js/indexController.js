@@ -131,7 +131,8 @@ const indexApp = {
         </tbody>
     </table>
 
-    <p>Candidatos Selecionado: {{caEleicao}}</p>
+    <p class="candSeleST">Candidatos Selecionados:</p><br/>
+    <p class="candSele" v-for="c in this.caEleicao">{{c.nome}}</p>
 
     <button type="button" @click="confirmarSelecionados()" class="btn btn-primary">Confirmar</button>
 
