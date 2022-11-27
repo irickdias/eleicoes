@@ -16,5 +16,8 @@ public interface VotosDAO extends JpaRepository<Votos, Long>{
 
     @Query(value="SELECT * FROM votos c WHERE c.ca_id = :filtro", nativeQuery=true)
     List <Votos> findWithFilter(@Param("filtro")Long filtro);
+
+    @Query(value="SELECT * FROM votos v WHERE v.ele_id = :id", nativeQuery=true)
+    List <Votos> findEleicao(@Param("id") Long id);
     
 }

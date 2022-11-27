@@ -9,21 +9,26 @@ const grafico = {
         axios.get(`http://localhost:8080/apis/candidato/buscar-todos?filtro=`)
         .then(response => {this.candidatos = response.data});
 
+        
+
         this.myChart = new Chart(document.getElementById('myChart'), this.config); // inicializa o grafico
     },
     methods: {
-        carregarGrafico(){
+        async carregarGrafico(){
+            await axios.get(`http://localhost:8080/apis/votos/buscarEleicao/${this.tipoID}`)
+            .then(response => {this.votos = response.data});
+
             this.dados = [];
             this.rotulos = [];
             //console.log("entrou");
             //console.log(this.candidatos[0].votos);
             //console.log(this.candidatos.length);
-            for(let i=0; i <this.candidatos.length ; i++)
+            for(let i=0; i <this.votos.length ; i++)
             {
                 //console.log("votos maior");
                 //console.log(this.candidatos[i].votos.length);
                 //console.log(this.candidatos[i].votos.eleicao.id);
-                if(this.candidatos[i].votos.length > 0)
+                /*if(this.candidatos[i].votos.length > 0)
                 {
                     //console.log("votos maior");
                     for(let j=0; j<this.candidatos[i].votos.length; j++)
@@ -39,7 +44,12 @@ const grafico = {
                         
                     }
                     
-                }
+                }*/
+                
+                this.titulo = this.votos[i].eleicao.tipo;
+                this.rotulos.push(this.votos[i].candidato.nome);
+                this.dados.push(this.votos[i].total);
+                
             }
             //console.log(this.titulo);
             //console.log(JSON.stringify(this.rotulos));

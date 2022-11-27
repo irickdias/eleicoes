@@ -61,4 +61,11 @@ public class VotosServiceController {
 
         return new ResponseEntity<>(votosDAO.findAll(), HttpStatus.OK);
     }
+
+    @GetMapping("/buscarEleicao/{id}")
+    public ResponseEntity<Object> buscarPorEleicao(@PathVariable(value="id") Long id)
+    {
+
+        return new ResponseEntity<>(votosDAO.findEleicao(id), HttpStatus.OK);
+    }
 }

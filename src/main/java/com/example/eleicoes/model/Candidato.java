@@ -43,7 +43,7 @@ public class Candidato implements Serializable{
         this.cargos = cargos;
     }
 
-    @OneToMany(mappedBy = "candidato")
+    /*@OneToMany(mappedBy = "candidato")
     private List<Votos> votos;
 
 
@@ -53,7 +53,7 @@ public class Candidato implements Serializable{
 
     public void setVotos(List<Votos> votos) {
         this.votos = votos;
-    }
+    }*/
 
     public Candidato() {
     }

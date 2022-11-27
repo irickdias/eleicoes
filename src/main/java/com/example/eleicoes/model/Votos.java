@@ -21,7 +21,7 @@ public class Votos implements Serializable{
     private Long id;
 
     @Column(name="vot_total")
-    private Long total;
+    private int total;
 
 
     @ManyToOne
@@ -45,11 +45,11 @@ public class Votos implements Serializable{
     }
 
     
-    public Long getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(Long total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 
@@ -66,7 +66,9 @@ public class Votos implements Serializable{
         this.candidato = candidato;
     }
 
-
+    public Candidato getCandidato(){
+        return candidato;
+    }
 
     
 }
