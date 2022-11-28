@@ -1,5 +1,8 @@
 package com.example.eleicoes.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -44,6 +47,10 @@ public class VotosServiceController {
     @PostMapping("/alterar")
     public ResponseEntity<Object> alterar(@RequestBody Votos votos)
     {
+        System.out.println(votos.getCandidato().getNome());
+
+        votos = votosDAO.findById(votos.getId()).get();
+        votos.setTotal(votos.getTotal()+1);
         votosDAO.save(votos);
         return new ResponseEntity<>(votos, HttpStatus.OK);
     }

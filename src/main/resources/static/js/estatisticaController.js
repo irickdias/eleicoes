@@ -20,6 +20,7 @@ const grafico = {
 
             this.dados = [];
             this.rotulos = [];
+            console.log(this.votos);
             //console.log("entrou");
             //console.log(this.candidatos[0].votos);
             //console.log(this.candidatos.length);
@@ -48,6 +49,7 @@ const grafico = {
                 
                 this.titulo = this.votos[i].eleicao.tipo;
                 this.rotulos.push(this.votos[i].candidato.nome);
+                console.log(this.votos[i].total);
                 this.dados.push(this.votos[i].total);
                 
             }
